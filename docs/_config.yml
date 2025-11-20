@@ -3,7 +3,7 @@ description: "Simple, beautiful, practical technical docs"
 baseurl: "" # set to '/repo-name' for project pages
 url: ""
 markdown: kramdown
-theme: ""
+theme: jekyll-theme-minimal
 
 # Navigation is driven by _data/navigation.yml
 
