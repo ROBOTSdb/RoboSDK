@@ -1,1 +1,0 @@
-"""This is a class to control the World info"""

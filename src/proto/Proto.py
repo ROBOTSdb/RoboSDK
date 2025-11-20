@@ -1,8 +1,8 @@
 from typing import Any
-from .ProtoAttribute import ProtoAttributes
+from ProtoAttribute import ProtoAttributes
 
 class Proto:
-    properties:dict[str,ProtoAttributes]
+    properties:dict[str,ProtoAttributes]={}
     NoneForEror:bool=True
     def __getitem__(self,key:str)->Any:
         if type(key)!=str:
@@ -17,10 +17,20 @@ class Proto:
                 return None
             else:
                 raise(KeyError("key not found"))
+    def __setitem__(self,key:str,value:Any)->None:
+        if type(key)!=str:
+            if self.NoneForEror==True:
+                return None
+            else:
+                raise(ValueError("use string key"))
+        self.properties[key]=value
     def __iter__(self):
         return self.properties.__iter__()
-    def __str__(self) -> str:
+    def proto(self,tabs:int=1) -> str:
         value:str=""
         for i in self.properties:
-            value+=str(self.properties[i])
+            value+=self.properties[i].proto(tabs=2)
         return value
+P=Proto()
+P['head']=ProtoAttributes(size=[1,2,3],color="red")
+print(P.proto())

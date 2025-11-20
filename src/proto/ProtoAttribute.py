@@ -20,16 +20,19 @@ class ProtoAttributes:
             text=text.replace("}","\n}")
         text="\n".join([("  "*tabs+i if not (( "{" in i) or ("}" in i)) else i) for i in text.splitlines()])
         return text
-    """def __getattribute__(self, name: str) -> Any:# type: ignore
+    def __getime__(self, name: str) -> Any:# type: ignore
+        if type(name)!=str:
+            return None
         if name in self.values:
             return self.values[name]
-        return super().__getattribute__(self,name) # type: ignore
-    def __setattr__(self, name: str, value: Any) -> None:
-        self.values[name]=value"""
+        return None
+    def __setitem__(self, name: str, value: Any) -> None:
+        if type(name)!=str:
+            return None
+        self.values[name]=value
     def __delattr__(self, name: str) -> None:
         del self.values[name]
-    def define(self,world:Any)->None:
-        world.define(self)
-    def proto_from_defined(self,world:Any)->None:
-        ...
-print(ProtoAttributes(translation=[7,3,4],controller="arm_hand").proto())
+    def define(self,world:Any,name:str)->None:
+        world.define(self,name)
+    def proto_from_defined(self,world:Any,name:str)->None:
+        self=world.proto_from_defined(self,name)

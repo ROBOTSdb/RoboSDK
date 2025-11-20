@@ -1,4 +1,0 @@
-"""The Fog node provides a way to simulate atmospheric effects by blending objects with the color specified by the color field based on the distances of the various objects from the camera."""
-from .Proto import Proto
-class FOG(Proto):
-    ...
