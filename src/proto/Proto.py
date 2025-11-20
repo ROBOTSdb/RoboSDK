@@ -19,3 +19,8 @@ class Proto:
                 raise(KeyError("key not found"))
     def __iter__(self):
         return self.properties.__iter__()
+    def __str__(self) -> str:
+        value:str=""
+        for i in self.properties:
+            value+=str(self.properties[i])
+        return value

@@ -1,1 +1,1 @@
-from .proto import Proto
+from .Proto import Proto
